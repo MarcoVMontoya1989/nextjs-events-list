@@ -1,10 +1,20 @@
-import React from 'react';
+import EventItemComponent from "./EventItem.component";
+import styles from '/styles/Base.module.scss';
 
-const EventListComponent = () => {
+const EventListComponent = ({items}) => {
+
+  const itemList = (
+    items.map(item => {
+      return (
+        <EventItemComponent key={item.id} item={item} />
+      );
+    })
+  )
+
   return (
-    <div>
-      
-    </div>
+    <ul className={<styles className="list"></styles>}>
+      {itemList}
+    </ul>
   );
 };
 
