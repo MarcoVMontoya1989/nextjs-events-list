@@ -1,5 +1,4 @@
 
-
 const FilteredEvents = () => {
   return (
     <div>
