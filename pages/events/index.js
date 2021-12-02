@@ -1,7 +1,6 @@
-import Link from 'next/link';
 import {useRouter} from "next/router";
 
-const Events = () => {
+const Index = () => {
   return (
     <div>
       <h1>all events</h1>
@@ -9,4 +8,4 @@ const Events = () => {
   );
 };
 
-export default Events;
+export default Index;
