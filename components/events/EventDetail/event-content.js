@@ -1,4 +1,4 @@
-import classes from '../../../styles/Base.module.scss';
+import classes from '../../../styles/Components/EventContent.module.scss';
 
 function EventContent(props) {
   return (
