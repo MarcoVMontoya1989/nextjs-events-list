@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import styles from '/styles/Base.module.scss';
 import ButtonComponent from "../Utils/Button.component";
 import DateIcon from "../icons/date-icon";
@@ -32,10 +31,11 @@ const EventItemComponent = (props) => {
            </div>
          </div>
          <div className={styles.actions}>
-           {/*<Link href={exploreLink}>Explore Event</Link>*/}
            <ButtonComponent link={exploreLink}>
              <span>Explore Event</span>
-             <span className={styles.icon}><ArrowRightIcon /></span>
+             <span className={styles.icon}>
+               <ArrowRightIcon />
+             </span>
            </ButtonComponent>
          </div>
        </div>
