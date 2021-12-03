@@ -12,7 +12,7 @@ const EventListComponent = ({items}) => {
   )
 
   return (
-    <ul className={<styles className="list"></styles>}>
+    <ul className={styles.list}>
       {itemList}
     </ul>
   );

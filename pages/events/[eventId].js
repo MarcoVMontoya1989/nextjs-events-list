@@ -1,7 +1,6 @@
 import {Fragment} from "react";
 import {useRouter} from "next/router";
 import {getEventById} from "../../dummy-data";
-import EventItemComponent from "../../components/events/EventItem.component";
 import EventSummary from "../../components/events/EventDetail/event-summary";
 import EventLogistics from "../../components/events/EventDetail/event-logistics";
 import EventContent from "../../components/events/EventDetail/event-content";
