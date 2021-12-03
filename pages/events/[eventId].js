@@ -11,9 +11,6 @@ const EventId = () => {
   const eventId = router.query.eventId;
   const eventGet = getEventById(eventId);
 
-  console.log('routers', router.query);
-  console.log('get item', eventGet);
-
   const eventCardContent = (
     <Fragment>
       <EventSummary title={eventGet.title} />
@@ -26,7 +23,7 @@ const EventId = () => {
 
   return (
     <Fragment>
-      {eventGet ? eventCardContent : <ErrorAlert /> }
+      {eventGet ? eventCardContent : <ErrorAlert>Not Found!</ErrorAlert> }
     </Fragment>
   );
 };
