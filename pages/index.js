@@ -1,5 +1,4 @@
 import styles from '../styles/Base.module.scss';
-
 import {getAllEvents} from "../dummy-data";
 import EventListComponent from "../components/events/EventList.component";
 import {getAllEventsFetch} from "../helpers/api-utils";
@@ -36,6 +35,7 @@ export async function getStaticProps() {
       featuredEvents: {
         event: mapEvents
       }
-    }
+    },
+    revalidate: 1800
   }
 }

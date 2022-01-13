@@ -2,10 +2,8 @@ import EventItemComponent from "./EventItem.component";
 import styles from '/styles/Base.module.scss';
 
 const EventListComponent = ({items}) => {
-  let {event} = items;
-
   const itemList = (
-    event.map(item  => {
+    items.map(item  => {
       return (
         <EventItemComponent key={item.id} item={item} />
       );

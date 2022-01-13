@@ -1,5 +1,6 @@
 export async function getFeaturedEvents() {
-
+  const allEvents = await getAllEventsFetch();
+  return allEvents.filter((event) => event.isFeatured);
 }
 
 export async function getAllEventsFetch() {
@@ -19,12 +20,16 @@ export async function getAllEventsFetch() {
 export async function getFilteredEvents(dateFilter) {
   const { year, month } = dateFilter;
 
-  return DUMMY_EVENTS.filter((event) => {
+  const allEvents = await getAllEventsFetch();
+
+  return allEvents.filter((event) => {
     const eventDate = new Date(event.date);
     return eventDate.getFullYear() === year && eventDate.getMonth() === month - 1;
   });
 }
 
 export async function getEventById(id) {
-  return DUMMY_EVENTS.find((event) => event.id === id);
+  const allEvents = await getAllEventsFetch();
+
+  return allEvents.find((event) => event.id === id);
 }

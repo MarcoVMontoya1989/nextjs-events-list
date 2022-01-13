@@ -2,9 +2,11 @@ import EventListComponent from "../../components/events/EventList.component";
 import {getAllEvents} from "../../dummy-data";
 import EventSearchComponent from "../../components/events/EventSearch.component";
 import {useRouter} from "next/router";
+import {getAllEventsFetch} from "../../helpers/api-utils";
 
-const Index = () => {
-  const allEvents = getAllEvents();
+const AllEventsPage = (props) => {
+
+  const {events} = props;
   const router = useRouter();
 
   const FilterSearchValue = (value) => {
@@ -22,9 +24,24 @@ const Index = () => {
   return (
     <div>
       <EventSearchComponent submitFilter={FilterSearchValue} />
-      <EventListComponent items={allEvents} />
+      <EventListComponent items={events} />
     </div>
   );
 };
 
-export default Index;
+export async function getStaticProps(context) {
+  const allEvents = await getAllEventsFetch();
+
+  return {
+    props: {
+      events: allEvents
+    },
+    revalidate: 60
+  }
+}
+
+// export async function getStaticPaths() {
+//
+// }
+
+export default AllEventsPage;
