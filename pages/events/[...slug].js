@@ -14,11 +14,6 @@ const FilteredEvents = (props) => {
   const router = useRouter();
   const routerProps = router.query.slug;
 
-  const yearProp = routerProps[0];
-  const monthProp = routerProps[1];
-  const numYear = +yearProp;
-  const numMonth = +monthProp;
-
   if(!routerProps) {
     return <ErrorAlert><p className={'center'}>Loading...</p></ErrorAlert>
   }
