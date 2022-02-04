@@ -4,9 +4,12 @@ import EventSummary from "../../components/events/EventDetail/event-summary";
 import EventLogistics from "../../components/events/EventDetail/event-logistics";
 import EventContent from "../../components/events/EventDetail/event-content";
 import ErrorAlert from "../../components/events/ErrorAlert/error-alert";
+import CommentsComponent from "../../components/input /Comments.component";
 
 const EventDetailedPage = (props) => {
   const {selectedEvent} = props;
+
+  console.log(selectedEvent.title);
 
   // const router = useRouter();
   // const eventId = router.query.eventId;
@@ -19,6 +22,7 @@ const EventDetailedPage = (props) => {
       <EventContent>
         {selectedEvent.description}
       </EventContent>
+      <CommentsComponent eventId={selectedEvent.eventId} />
     </Fragment>
   );
 

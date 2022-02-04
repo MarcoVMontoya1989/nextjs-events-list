@@ -1,5 +1,5 @@
 import EventListComponent from "../../components/events/EventList.component";
-import {getAllEvents} from "../../dummy-data";
+// import {getAllEvents} from "../../dummy-data";
 import EventSearchComponent from "../../components/events/EventSearch.component";
 import {useRouter} from "next/router";
 import {getAllEventsFetch} from "../../helpers/api-utils";

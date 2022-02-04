@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import styles from '/styles/Base.module.scss';
 import ButtonComponent from "../Utils/Button.component";
 import DateIcon from "../icons/date-icon";
@@ -17,7 +18,7 @@ const EventItemComponent = (props) => {
 
   return (
      <li className={styles.item}>
-       <img src={`/${image}`} alt={title}/>
+       <Image src={`/${image}`} alt={title} width={600} height={600}/>
        <div className={styles.content}>
          <div>
            <h2>{title}</h2>

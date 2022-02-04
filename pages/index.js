@@ -1,7 +1,8 @@
-import styles from '../styles/Base.module.scss';
-import {getAllEvents} from "../dummy-data";
+// import styles from '../styles/Base.module.scss';
+// import {getAllEvents} from "../dummy-data";
 import EventListComponent from "../components/events/EventList.component";
 import {getAllEventsFetch} from "../helpers/api-utils";
+import NewsletterRegistrationComponent from "../components/input /NewsletterRegistration.component";
 
 export default function Home(props) {
 
@@ -9,6 +10,7 @@ export default function Home(props) {
 
   return (
     <div className={''}>
+      <NewsletterRegistrationComponent />
       <EventListComponent items={featuredEvents} />
     </div>
   )
