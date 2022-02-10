@@ -5,12 +5,12 @@ function NewsletterRegistrationComponent() {
 
   const emailRef = useRef();
 
-  function registrationHandler(event) {
+  async function registrationHandler(event) {
     event.preventDefault();
 
     const emailNewsletter = emailRef.current.value;
 
-    fetch('api/newsletter', {
+    const response = await fetch('api/newsletter', {
       method: 'POST',
       body: JSON.stringify({
         email: emailNewsletter
@@ -18,11 +18,9 @@ function NewsletterRegistrationComponent() {
       headers: {
         'Content-Type': 'application/json'
       }
-    }).then(response => response.json)
-      .then(
-        data => console.log('NEW EMAIL REGISTRATION')
-      )
+    });
 
+    console.log(response);
   }
 
   return (

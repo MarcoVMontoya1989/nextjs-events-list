@@ -1,16 +1,19 @@
-export default function handler(request, res) {
+import {MongoClient} from 'mongodb';
+
+async function handler(request, res) {
 
   const eventId = request.query.eventId;
 
-  console.log( 'entering to api', eventId);
-  console.log('body request method', request.method);
+  console.log('eventid', eventId);
 
   switch (request.method) {
     case "POST":
 
-      const {email, name, text} = request.body;
+      const client = await MongoClient.connect(process.env.MONGODB_URI);
+      const db = client.db();
+      const meetupListCollection = db.collection(process.env.MONGODB_MEETUPS);
 
-      console.log('body from comment eventid api', request.body);
+      const {email, name, text} = request.body;
 
       if (!email.includes("@") || !name
         || name.trim() === '' || !text
@@ -22,7 +25,8 @@ export default function handler(request, res) {
         });
       }
 
-      // console.log(email, name, text);
+      const resultSearch = await meetupListCollection
+        .findOne({ eventId: eventId });
 
       const newComment = {
         id: new Date().toISOString(),
@@ -30,6 +34,8 @@ export default function handler(request, res) {
         name,
         text
       }
+
+      const result = await newsletterCollection.insertOne(newComment);
 
       return res.status(201).json({message: 'success', comment: newComment});
     case "GET":
@@ -54,3 +60,5 @@ export default function handler(request, res) {
 
   }
 }
+
+export default handler;
