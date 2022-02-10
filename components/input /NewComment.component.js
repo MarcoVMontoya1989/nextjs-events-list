@@ -36,7 +36,7 @@ function NewCommentComponent(props) {
   }
 
   return (
-    <form className={styles.new_comment_form}>
+    <form className={styles.new_comment_form} onSubmit={sendCommentHandler}>
       <div className={styles.row_new_comment}>
         <div className={styles.control_new_comment}>
           <label htmlFor='email'>Your email</label>

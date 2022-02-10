@@ -1,14 +1,20 @@
-export default function handler(request, response) {
+export default function handler(request, res) {
 
   const eventId = request.query.eventId;
 
+  console.log( 'entering to api', eventId);
+  console.log('body request method', request.method);
 
   switch (request.method) {
     case "POST":
 
       const {email, name, text} = request.body;
 
-      if (!email.includes("@") || !name || name.trim() === '' || !text || text.trim() === '') {
+      console.log('body from comment eventid api', request.body);
+
+      if (!email.includes("@") || !name
+        || name.trim() === '' || !text
+        || text.trim() === '') {
         res.status(422).json({
           error: {
             message: 'empty values'
@@ -16,7 +22,7 @@ export default function handler(request, response) {
         });
       }
 
-      console.log(email, name, text);
+      // console.log(email, name, text);
 
       const newComment = {
         id: new Date().toISOString(),
@@ -27,6 +33,8 @@ export default function handler(request, response) {
 
       return res.status(201).json({message: 'success', comment: newComment});
     case "GET":
+
+      console.log('entering???')
 
       const dummy = [
         {
@@ -42,7 +50,7 @@ export default function handler(request, response) {
         },
       ]
 
-      return res.status(200).json({comments: dummy})
+      return res.status(201).json({comments: dummy})
 
   }
 }

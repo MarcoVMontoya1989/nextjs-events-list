@@ -9,7 +9,7 @@ import CommentsComponent from "../../components/input /Comments.component";
 const EventDetailedPage = (props) => {
   const {selectedEvent} = props;
 
-  console.log(selectedEvent.title);
+  // console.log('selected event test', selectedEvent.id);
 
   // const router = useRouter();
   // const eventId = router.query.eventId;
@@ -22,7 +22,7 @@ const EventDetailedPage = (props) => {
       <EventContent>
         {selectedEvent.description}
       </EventContent>
-      <CommentsComponent eventId={selectedEvent.eventId} />
+      <CommentsComponent eventId={selectedEvent.id} />
     </Fragment>
   );
 

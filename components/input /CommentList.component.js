@@ -1,21 +1,22 @@
 import styles from '../../styles/Base.module.scss';
 
-function CommentListComponent() {
+function CommentListComponent({commentsList}) {
+
+  console.log(commentsList);
+
   return (
     <ul className={styles.comments_list}>
-      {/* Render list of comments - fetched from API */}
-      <li>
-        <p>My comment is amazing!</p>
-        <div>
-          By <address>Maximilian</address>
-        </div>
-      </li>
-      <li>
-        <p>My comment is amazing!</p>
-        <div>
-          By <address>Maximilian</address>
-        </div>
-      </li>
+      {
+        commentsList.map(comment => (
+            <li key={comment.id}>
+              <p>{comment.text}</p>
+              <div>
+                By <address>{comment.name}</address>
+              </div>
+            </li>
+          )
+        )
+      }
     </ul>
   );
 }
