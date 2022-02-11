@@ -10,8 +10,9 @@ async function handler(request, res) {
         const client = await MongoClient.connect(process.env.MONGODB_URI);
         const db = client.db();
         const meetupListCollection = db.collection('meetupComments');
-
         const {email, name, text} = request.body;
+
+        let test = [];
 
         if (!email.includes("@") || !name
           || name.trim() === '' || !text
@@ -62,25 +63,25 @@ async function handler(request, res) {
       }
       break;
     case "GET":
+      try {
+        const commentsList = [];
 
-      console.log('entering???')
+        const client = await MongoClient.connect(process.env.MONGODB_URI);
+        const db = client.db();
+        const meetupListCollection = db.collection('meetupComments');
 
-      const dummy = [
-        {
-          id: 'a1',
-          name: 'Marco',
-          email: 'test@example.com',
-          comment: 'lorem ipsum dolor sit am lorem'
-        }, {
-          id: 'a2',
-          name: 'Karen',
-          email: 'karen@example.com',
-          comment: 'lorem ipsum dolor sit am lorem'
-        },
-      ]
+        const resultSearch = await meetupListCollection
+          .findOne({ eventId: eventId });
 
-      return res.status(201).json({comments: dummy})
+        if (!resultSearch) {
+          return res.status(201).json({empty: true});
+        }
 
+        return res.status(201).json({comments: [...resultSearch.comments]});
+
+      } catch (e) {
+        return res.status(501).json({'message error': e.message});
+      }
   }
 }
 
