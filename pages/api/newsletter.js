@@ -2,6 +2,7 @@ import {MongoClient} from 'mongodb';
 
 const newUserNewsletter = async (req, res) => {
   const newUserEmail = req.body.email;
+  let result;
 
   console.log(newUserEmail);
 
@@ -13,19 +14,22 @@ const newUserNewsletter = async (req, res) => {
 
     const data = req.body;
 
-    const client = await MongoClient.connect(process.env.MONGODB_URI);
-    const db = client.db();
-    const newsletterCollection = db.collection(process.env.MONGODB_NEWSLETTER);
+    try {
+      const client = await MongoClient.connect(process.env.MONGODB_URI);
+      const db = client.db();
+      const newsletterCollection = db.collection(process.env.MONGODB_NEWSLETTER);
 
-    const result = await newsletterCollection.insertOne(data);
+      result = await newsletterCollection.insertOne(data);
 
-    res.status(201).json({
-      message: 'added to collection',
-      bodyContent: result
-    });
+      res.status(201).json({
+        message: 'added to collection',
+        bodyContent: result
+      });
 
-    client.close();
-
+      client.close();
+    } catch (err) {
+      res.status(405).json({message: 'Something went wrong while inserting'});
+    }
   }
 }
 
