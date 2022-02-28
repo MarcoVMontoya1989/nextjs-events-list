@@ -10,7 +10,7 @@ function NewsletterRegistrationComponent() {
 
     const emailNewsletter = emailRef.current.value;
 
-    const response = await fetch('api/newsletter', {
+    await fetch('api/newsletter', {
       method: 'POST',
       body: JSON.stringify({
         email: emailNewsletter
@@ -19,8 +19,6 @@ function NewsletterRegistrationComponent() {
         'Content-Type': 'application/json'
       }
     });
-
-    console.log(response);
   }
 
   return (
